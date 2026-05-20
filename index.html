@@ -1,1 +1,290 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festa Junina 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vermelho: #C0392B; --amarelo: #F1C40F; --verde: #27AE60;
+    --azul: #2980B9; --laranja: #E67E22; --creme: #FDF6E3;
+    --marrom: #6D4C41; --marrom-escuro: #4E342E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #1a0a00; font-family: 'Lato', sans-serif;
+    min-height: 100vh; overflow-x: hidden;
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(192,57,43,0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(241,196,15,0.1) 0%, transparent 50%);
+  }
+  .bandeirinhas-topo { width:100%; overflow:hidden; height:60px; position:relative; background:linear-gradient(to bottom,#0d0500 0%,transparent 100%); }
+  .fio { position:absolute; left:-10px; right:-10px; height:2px; background:#4E342E; top:18px; z-index:1; }
+  .bandeirinhas-row { display:flex; position:absolute; top:0; left:0; right:0; justify-content:space-around; align-items:flex-start; padding:0 10px; animation:balanco 3s ease-in-out infinite alternate; }
+  @keyframes balanco { 0%{transform:skewX(-1deg)} 100%{transform:skewX(1deg)} }
+  .bandeirinha { width:0; height:0; border-left:16px solid transparent; border-right:16px solid transparent; border-top:40px solid var(--cor); flex-shrink:0; }
+  .card { max-width:560px; margin:0 auto; padding:16px 16px 40px; }
+  .header { background:linear-gradient(135deg,var(--marrom-escuro) 0%,#3E2723 100%); border:3px solid var(--amarelo); border-radius:16px 16px 0 0; padding:28px 24px 20px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:-30px; left:-30px; right:-30px; bottom:-30px; background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(241,196,15,0.04) 10px,rgba(241,196,15,0.04) 20px); }
+  .chapeu { font-size:52px; display:block; margin-bottom:8px; animation:pulsar 2s ease-in-out infinite; }
+  @keyframes pulsar { 0%,100%{transform:scale(1) rotate(-3deg)} 50%{transform:scale(1.08) rotate(3deg)} }
+  .titulo { font-family:'Playfair Display',serif; font-style:italic; font-size:2.4rem; color:var(--amarelo); text-shadow:3px 3px 0px var(--marrom-escuro),0 0 30px rgba(241,196,15,0.4); line-height:1.1; position:relative; }
+  .subtitulo { color:#FFCC80; font-size:0.95rem; font-weight:300; margin-top:8px; letter-spacing:2px; text-transform:uppercase; position:relative; }
+  .info-festa { margin-top:18px; display:flex; flex-direction:column; gap:8px; position:relative; }
+  .info-item { background:rgba(241,196,15,0.12); border:1px solid rgba(241,196,15,0.3); border-radius:8px; padding:8px 14px; color:#FFF8DC; font-size:0.92rem; display:flex; align-items:center; gap:10px; text-align:left; }
+  .info-item span { line-height:1.4; }
+  .divisor { height:4px; background:linear-gradient(90deg,var(--vermelho),var(--amarelo),var(--verde),var(--azul),var(--laranja)); }
+  .secao { background:var(--creme); padding:20px; border-left:3px solid var(--amarelo); border-right:3px solid var(--amarelo); }
+  .secao-titulo { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--marrom-escuro); font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .secao-titulo span { font-size:1.3em; }
+  .grid-comidas { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .item-comida { background:white; border:1.5px solid #E8DCC8; border-radius:10px; padding:12px; display:flex; align-items:center; gap:10px; transition:transform 0.2s,box-shadow 0.2s; }
+  .item-comida:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(109,76,65,0.15); }
+  .item-emoji { font-size:1.8rem; flex-shrink:0; }
+  .item-nome { font-size:0.88rem; font-weight:700; color:var(--marrom-escuro); line-height:1.2; }
+  .item-detalhe { font-size:0.75rem; color:#8D6E63; font-weight:300; margin-top:2px; }
+  .bebida-box { background:linear-gradient(135deg,#E8F5E9,#C8E6C9); border:2px dashed var(--verde); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px; }
+  .bebida-emoji { font-size:2.5rem; }
+  .bebida-texto { flex:1; }
+  .bebida-titulo { font-weight:700; color:#1B5E20; font-size:0.95rem; }
+  .bebida-desc { font-size:0.82rem; color:#388E3C; margin-top:3px; line-height:1.4; }
+  .badge-livre { background:var(--verde); color:white; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:20px; text-transform:uppercase; letter-spacing:1px; flex-shrink:0; }
+  .calc-wrapper { display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .calc-label { font-size:0.85rem; color:var(--marrom); font-weight:700; }
+  .calc-input-group { display:flex; align-items:center; gap:6px; background:white; border:2px solid #E8D5A3; border-radius:8px; padding:4px 8px; }
+  .calc-btn { width:26px; height:26px; border:none; background:var(--laranja); color:white; border-radius:6px; font-size:1.1rem; cursor:pointer; font-weight:700; display:flex; align-items:center; justify-content:center; transition:background 0.15s; }
+  .calc-btn:hover { background:var(--vermelho); }
+  .calc-btn:disabled { background:#ccc; cursor:default; }
+  .calc-num { font-size:1.1rem; font-weight:700; color:var(--marrom-escuro); min-width:28px; text-align:center; }
+  .total-input-group { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .total-input-label { font-size:0.85rem; color:var(--marrom); font-weight:700; white-space:nowrap; }
+  .total-input { flex:1; border:2px solid #E8D5A3; border-radius:8px; padding:6px 10px; font-size:0.9rem; font-family:'Lato',sans-serif; color:var(--marrom-escuro); background:white; outline:none; }
+  .total-input:focus { border-color:var(--laranja); }
+  .total-input:disabled { background:#f5f5f5; color:#999; }
+  .total-destaque { background:linear-gradient(135deg,var(--vermelho),#922B21); color:white; border-radius:10px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
+  .total-label { font-size:0.85rem; opacity:0.9; text-transform:uppercase; letter-spacing:1px; }
+  .total-valor { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; }
+  .total-sub { font-size:0.75rem; opacity:0.8; }
+  .status-bar { display:flex; align-items:center; gap:6px; font-size:0.75rem; color:#8D6E63; margin-bottom:14px; }
+  .status-dot { width:8px; height:8px; border-radius:50%; background:#ccc; flex-shrink:0; transition:background 0.3s; }
+  .status-dot.conectado { background:var(--verde); }
+  .status-dot.carregando { background:var(--amarelo); animation:piscar 1s infinite; }
+  .status-dot.erro { background:var(--vermelho); }
+  @keyframes piscar { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .aviso-host { background:linear-gradient(135deg,#FFF8E1,#FFF3CD); border:2px solid var(--amarelo); border-radius:10px; padding:12px 14px; font-size:0.82rem; color:var(--marrom); margin-bottom:14px; display:flex; gap:8px; align-items:flex-start; line-height:1.5; }
+  .salvar-btn { width:100%; margin-top:10px; padding:10px; background:var(--laranja); color:white; border:none; border-radius:8px; font-family:'Lato',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; transition:background 0.15s; display:none; }
+  .salvar-btn:hover { background:var(--vermelho); }
+  .footer { background:linear-gradient(135deg,var(--marrom-escuro) 0%,#3E2723 100%); border:3px solid var(--amarelo); border-top:none; border-radius:0 0 16px 16px; padding:16px 24px; text-align:center; }
+  .footer-emoji { font-size:1.6rem; }
+  .footer-texto { color:#FFCC80; font-size:0.82rem; margin-top:6px; font-weight:300; letter-spacing:1px; }
+  .sep { background:var(--creme); border-left:3px solid var(--amarelo); border-right:3px solid var(--amarelo); padding:0 20px; }
+  .sep hr { border:none; border-top:2px dashed #D5C5A1; }
+  .badge-cat { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+  .badge-comida { background:#FFF3E0; color:var(--laranja); border:1.5px solid var(--laranja); }
+  .badge-util   { background:#E3F2FD; color:var(--azul);   border:1.5px solid var(--azul); }
+  .badge-deco   { background:#FCE4EC; color:var(--vermelho); border:1.5px solid var(--vermelho); }
+</style>
+</head>
+<body>
+
+<div class="bandeirinhas-topo">
+  <div class="fio"></div>
+  <div class="bandeirinhas-row" id="bandeirinhas"></div>
+</div>
+
+<div class="card">
+  <div class="header">
+    <span class="chapeu">🎪</span>
+    <div class="titulo">Festa Junina!</div>
+    <div class="subtitulo">Vamos arrastar o pé juntos 🤠</div>
+    <div class="info-festa">
+      <div class="info-item">📅 <span>Sábado, 20 de junho</span></div>
+      <div class="info-item">⏰ <span>A partir das 19h</span></div>
+      <div class="info-item">📍 <span>Rua Sebastião Pereira de Oliveira, 186<br>Vale do Jatobá</span></div>
+    </div>
+  </div>
+
+  <div class="divisor"></div>
+
+  <div class="secao">
+    <div class="secao-titulo"><span>🍽️</span> O que vai ter</div>
+    <div class="badge-cat badge-comida">🌽 Comidas &amp; Doces</div>
+    <div class="grid-comidas">
+      <div class="item-comida"><div class="item-emoji">🌽</div><div><div class="item-nome">Canjica</div><div class="item-detalhe">Quentinha e cremosa</div></div></div>
+      <div class="item-comida"><div class="item-emoji">🥣</div><div><div class="item-nome">Caldo de Mandioca</div><div class="item-detalhe">Pra esquentar</div></div></div>
+      <div class="item-comida"><div class="item-emoji">🫘</div><div><div class="item-nome">Caldo de Feijão</div><div class="item-detalhe">Com tudo</div></div></div>
+      <div class="item-comida"><div class="item-emoji">🍿</div><div><div class="item-nome">Pipoca</div><div class="item-detalhe">Doce e salgada</div></div></div>
+      <div class="item-comida"><div class="item-emoji">🥜</div><div><div class="item-nome">Pé de Moleque</div><div class="item-detalhe">Crocante!</div></div></div>
+      <div class="item-comida"><div class="item-emoji">🥜</div><div><div class="item-nome">Paçoca</div><div class="item-detalhe">Clássico junino</div></div></div>
+    </div>
+    <br>
+    <div class="badge-cat badge-util">🥤 Utensílios &amp; Estrutura</div>
+    <div class="grid-comidas">
+      <div class="item-comida"><div class="item-emoji">🥄</div><div><div class="item-nome">Descartáveis</div><div class="item-detalhe">Pratos, copos, talheres</div></div></div>
+      <div class="item-comida"><div class="item-emoji">🪑</div><div><div class="item-nome">Cadeiras &amp; Mesas</div><div class="item-detalhe">Alugadas</div></div></div>
+    </div>
+    <br>
+    <div class="badge-cat badge-deco">🎉 Decoração</div>
+    <div class="grid-comidas" style="grid-template-columns:1fr;">
+      <div class="item-comida"><div class="item-emoji">🏮</div><div><div class="item-nome">Bandeirinhas</div><div class="item-detalhe">Pra deixar no clima junino!</div></div></div>
+    </div>
+  </div>
+
+  <div class="sep"><hr></div>
+
+  <div class="secao">
+    <div class="secao-titulo"><span>🍺</span> Bebidas</div>
+    <div class="bebida-box">
+      <div class="bebida-emoji">🍻</div>
+      <div class="bebida-texto">
+        <div class="bebida-titulo">Cada um traz a sua!</div>
+        <div class="bebida-desc">Traga o que você quiser beber — água, refrigerante, cerveja, cachaça... à vontade!</div>
+      </div>
+      <div class="badge-livre">Livre</div>
+    </div>
+  </div>
+
+  <div class="sep"><hr></div>
+
+  <div class="secao">
+    <div class="secao-titulo"><span>💰</span> Rachar o custo</div>
+
+    <div class="status-bar">
+      <div class="status-dot carregando" id="statusDot"></div>
+      <span id="statusTexto">Conectando...</span>
+    </div>
+
+    <div class="aviso-host" id="avisoHost" style="display:none;">
+      🔐 <span>Você é o organizador — só você pode editar os valores. Os convidados veem tudo em tempo real!</span>
+    </div>
+
+    <div class="total-input-group">
+      <div class="total-input-label">💵 Total gasto (R$):</div>
+      <input class="total-input" type="number" id="totalInput" placeholder="ex: 350" min="0" step="0.01" disabled>
+    </div>
+
+    <div class="calc-wrapper">
+      <div class="calc-label">👥 Número de pessoas:</div>
+      <div class="calc-input-group">
+        <button class="calc-btn" id="btnMenos" onclick="mudarPessoas(-1)" disabled>−</button>
+        <div class="calc-num" id="numPessoas">—</div>
+        <button class="calc-btn" id="btnMais" onclick="mudarPessoas(1)" disabled>+</button>
+      </div>
+    </div>
+
+    <button class="salvar-btn" id="salvarBtn" onclick="salvarFirebase()">💾 Salvar e atualizar para todos</button>
+
+    <div class="total-destaque">
+      <div>
+        <div class="total-label">Cada um paga</div>
+        <div class="total-sub" id="totalSub">aguardando dados...</div>
+      </div>
+      <div class="total-valor" id="valorPorPessoa">R$ —</div>
+    </div>
+
+    <p style="font-size:0.78rem;color:#8D6E63;margin-top:10px;text-align:center;">
+      🔁 A bebida não entra na conta — cada um já traz a sua!
+    </p>
+  </div>
+
+  <div class="divisor"></div>
+
+  <div class="footer">
+    <div class="footer-emoji">🤠 🌽 🎶 🥜 🏮</div>
+    <div class="footer-texto">Vai ser incrível! Arrasta o pé com a gente 💃🕺</div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDqgplTy9EmaP0a79hYnYM1LJWvd7vd62c",
+    authDomain: "festajunina2026-8b246.firebaseapp.com",
+    projectId: "festajunina2026-8b246",
+    storageBucket: "festajunina2026-8b246.firebasestorage.app",
+    messagingSenderId: "135288250458",
+    appId: "1:135288250458:web:daf9eb7d17e8609da7b863",
+    databaseURL: "https://festajunina2026-8b246-default-rtdb.firebaseio.com"
+  };
+
+  const isHost = new URLSearchParams(window.location.search).has("host");
+  const app = initializeApp(firebaseConfig);
+  const db  = getDatabase(app);
+  const dadosRef = ref(db, "festa/dados");
+
+  // Bandeirinhas
+  const cores = ["#C0392B","#F1C40F","#27AE60","#2980B9","#E67E22","#8E44AD","#16A085"];
+  const cont = document.getElementById("bandeirinhas");
+  for (let i = 0; i < 28; i++) {
+    const b = document.createElement("div");
+    b.className = "bandeirinha";
+    b.style.setProperty("--cor", cores[i % cores.length]);
+    cont.appendChild(b);
+  }
+
+  let pessoas = 1;
+  let totalGasto = 0;
+
+  function setStatus(tipo, texto) {
+    document.getElementById("statusDot").className = "status-dot " + tipo;
+    document.getElementById("statusTexto").textContent = texto;
+  }
+
+  function calcular() {
+    document.getElementById("numPessoas").textContent = pessoas;
+    const sub = document.getElementById("totalSub");
+    const val = document.getElementById("valorPorPessoa");
+    sub.textContent = pessoas + (pessoas === 1 ? " pessoa" : " pessoas");
+    if (totalGasto > 0 && pessoas > 0) {
+      val.textContent = "R$ " + (totalGasto / pessoas).toFixed(2).replace(".", ",");
+    } else {
+      val.textContent = "R$ —";
+    }
+  }
+
+  if (isHost) {
+    document.getElementById("avisoHost").style.display = "flex";
+    document.getElementById("salvarBtn").style.display = "block";
+    document.getElementById("totalInput").disabled = false;
+    document.getElementById("btnMenos").disabled = false;
+    document.getElementById("btnMais").disabled  = false;
+    document.getElementById("totalInput").addEventListener("input", () => {
+      totalGasto = parseFloat(document.getElementById("totalInput").value) || 0;
+      calcular();
+    });
+  }
+
+  window.mudarPessoas = function(d) {
+    pessoas = Math.max(1, pessoas + d);
+    calcular();
+  };
+
+  window.salvarFirebase = function() {
+    const btn = document.getElementById("salvarBtn");
+    btn.textContent = "⏳ Salvando...";
+    btn.disabled = true;
+    set(dadosRef, { pessoas, total: totalGasto })
+      .then(() => {
+        btn.textContent = "✅ Salvo!";
+        setTimeout(() => { btn.textContent = "💾 Salvar e atualizar para todos"; btn.disabled = false; }, 2000);
+      })
+      .catch(() => { btn.textContent = "❌ Erro ao salvar"; btn.disabled = false; });
+  };
+
+  setStatus("carregando", "Conectando...");
+  onValue(dadosRef, (snapshot) => {
+    setStatus("conectado", "Ao vivo 🟢 — atualiza em tempo real");
+    const data = snapshot.val();
+    if (data) {
+      pessoas    = data.pessoas || 1;
+      totalGasto = data.total   || 0;
+      const inp = document.getElementById("totalInput");
+      if (document.activeElement !== inp) inp.value = totalGasto > 0 ? totalGasto : "";
+    }
+    calcular();
+  }, () => setStatus("erro", "Erro de conexão — tente recarregar"));
+</script>
+</body>
+</html>
